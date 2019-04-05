@@ -1,0 +1,23 @@
+####################################################
+### get needed variables befor running terraform ###
+####################################################
+
+export GOOGLE_APPLICATION_CREDENTIALS="~/key.json" &&
+export TF_VAR_project=$(gcloud config get-value project) &&
+export TF_VAR_API="abcabcabc" &&
+export TF_VAR_password="xxxxxxxxxxxxxx16" && 
+export TF_VAR_MONGODB_PASSWORD="password"  &&
+export TF_VAR_MONGODB_ROOT_PASSWORD="rpassword" &&
+export TF_VAR_bucket=api_app &&
+
+where "~/key.json" < path to your GC SA Key
+where abcabcabc < your API-key for openweather API
+where xxxxxxxxxxxxxx16 < password for k8s cluster
+where "password" < your password for DB
+where "rpassword" < your password for DB root account
+
+#########################
+### access in cluster ###
+#########################
+
+gcloud container clusters get-credentials mongodb --zone europe-west1-b --project $TF_VAR_project
