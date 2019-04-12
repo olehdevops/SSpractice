@@ -1,12 +1,12 @@
-###############################
-### K8S PODs - Telegram Bot ###
-###############################
-resource "kubernetes_deployment" "telebot" {
+#######################
+### K8S POD - Redis ###
+#######################
+resource "kubernetes_deployment" "tf" {
   metadata {
-    name = "telebot"
+    name = "tf"
 
     labels {
-      app  = "telebot"
+      app  = "tf"
       role = "master"
       tier = "backend"
     }
@@ -17,7 +17,7 @@ resource "kubernetes_deployment" "telebot" {
 
     selector = {
       match_labels {
-        app  = "telebot"
+        app  = "tf"
         role = "master"
         tier = "backend"
       }
@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "telebot" {
     template {
       metadata {
         labels {
-          app  = "telebot"
+          app  = "tf"
           role = "master"
           tier = "backend"
         }
@@ -34,17 +34,12 @@ resource "kubernetes_deployment" "telebot" {
 
       spec {
         container {
-          image = "denizka/telebot:v0.7"
+          image = "yuriy6735/flask"
           name  = "master"
 
-          env {
-            name  = "api_telegram"
-            value = "${var.api_telegram}"
-          }
-
-          env {
-            name  = "ip_redis"
-            value = "${var.ip_redis}"
+          port {
+            container_port = 80
+            
           }
 
           resources {

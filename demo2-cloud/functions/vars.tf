@@ -36,3 +36,5 @@ variable "MONGODB_USERNAME" {
 
 variable "MONGODB_PASSWORD" {}
 variable "MONGODB_ROOT_PASSWORD" {}
+#variable "ip_tf" {}
+

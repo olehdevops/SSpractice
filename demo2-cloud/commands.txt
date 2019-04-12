@@ -2,20 +2,21 @@
 ### get needed variables befor running terraform ###
 ####################################################
 
-export GOOGLE_APPLICATION_CREDENTIALS="~/key.json" &&
+export GOOGLE_APPLICATION_CREDENTIALS='/home/zambezi/devops/mygit/SSpractice/demo2-cloud/key.json' &&
 export TF_VAR_project=$(gcloud config get-value project) &&
-export TF_VAR_API="abcabcabc" &&
-export TF_VAR_password="xxxxxxxxxxxxxx16" && 
-export TF_VAR_MONGODB_PASSWORD="password1"  &&
-export TF_VAR_MONGODB_ROOT_PASSWORD="password2" &&
-export TF_VAR_bucket='app-buck'
+export TF_VAR_API='abcabcabc' &&
+export TF_VAR_password='xxxxxxxxxxxxxx16' && 
+export TF_VAR_MONGODB_PASSWORD='password1'  &&
+export TF_VAR_MONGODB_ROOT_PASSWORD='password2' &&
+export TF_VAR_bucket='bucket_name'
+export TF_VAR_api_telegram='api_key_for_telegrambot'
 
 where "~/key.json" < path to your GC SA Key
 where abcabcabc < your API-key for openweather API
 where xxxxxxxxxxxxxx16 < password for k8s cluster
 where "password1" < your password for DB
 where "password2" < your password for DB root account
-where 'app-buck < your bucket name (must be unique)
+where 'bucket_name < your bucket name (must be unique)
 
 #########################
 ### access in cluster ###

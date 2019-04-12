@@ -24,7 +24,7 @@ variable "region" {
   default = "europe-west1"
 }
 
-#variable "api_telegram" {}
+variable "api_telegram" {}
 
 variable "bucket" {
   description = "my bucket"

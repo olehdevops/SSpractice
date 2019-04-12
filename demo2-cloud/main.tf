@@ -46,7 +46,17 @@ module "redis" {
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
 }
-
+/*
+module "tf" {
+  source                 = "./k8s/tf"
+  host                   = "${module.gke.host}"
+  username               = "${var.username}"
+  password               = "${var.password}"
+  client_certificate     = "${module.gke.client_certificate}"
+  client_key             = "${module.gke.client_key}"
+  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+}
+*/
 module "jypiter" {
   source                 = "./k8s/jypiter"
   host                   = "${module.gke.host}"
@@ -65,9 +75,9 @@ module "bot" {
   client_certificate     = "${module.gke.client_certificate}"
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
-  #api_telegram           = "${var.api_telegram}"
+  api_telegram           = "${var.api_telegram}"
+  ip_redis              = "${module.redis.ip_redis}"
 }
-
 module "functions" {
   project               = "${var.project}"
   source                = "./functions"
@@ -76,6 +86,7 @@ module "functions" {
   API                   = "${var.API}"
   service               = "${module.mongo.ip}"
   ip_redis              = "${module.redis.ip_redis}"
+  #ip_tf = "${module.tf.ip_tf}"
   MONGODB_PASSWORD      = "${var.MONGODB_PASSWORD}"
   MONGODB_ROOT_PASSWORD = "${var.MONGODB_ROOT_PASSWORD}"
 }
