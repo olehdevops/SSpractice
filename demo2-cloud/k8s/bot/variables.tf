@@ -10,6 +10,8 @@ variable client_certificate {}
 variable client_key {}
 variable cluster_ca_certificate {}
 variable "api_telegram" {}
-variable "ip_redis" {}
+variable "ip_redis" {
+  default = "0.0.0.0"
+}
 
 

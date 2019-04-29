@@ -29,7 +29,7 @@ resource "kubernetes_service" "jupyter-balancer" {
     }
 
     type = "LoadBalancer"
-    #load_balancer_ip = "${var.jypiter_ip}"
+    load_balancer_ip = "${var.lbmainip}"
 
     port {
       port        = 80

@@ -14,7 +14,7 @@ provider "kubernetes" {
 resource "kubernetes_service" "mongo-master" {
   metadata {
     name = "mongo-master"
-
+    namespace = "dbspace"
     labels {
       app  = "mongo"
       role = "master"
@@ -29,7 +29,7 @@ resource "kubernetes_service" "mongo-master" {
       tier = "backend"
     }
 
-    type = "LoadBalancer"
+    type = "ClusterIP"
 
     port {
       port        = 27017
@@ -38,6 +38,6 @@ resource "kubernetes_service" "mongo-master" {
   }
 }
 
-output "ip" {
-  value = "${kubernetes_service.mongo-master.load_balancer_ingress.0.ip}"
-}
+# output "ip" {
+#   value = "${kubernetes_service.mongo-master.load_balancer_ingress.0.ip}"
+# }

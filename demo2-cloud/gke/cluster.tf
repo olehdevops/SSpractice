@@ -1,8 +1,8 @@
 ###################
 ### GKE Cluster ###
 ###################
-resource "google_container_cluster" "mongodb" {
-  name               = "mongodb"
+resource "google_container_cluster" "k8s_dev_cluster" {
+  name               = "k8s-dev-cluster"
   region               = "${var.region}"
   initial_node_count = 1
 
@@ -34,21 +34,21 @@ resource "google_container_cluster" "mongodb" {
 ### Output for K8S ###
 ######################
 output "client_certificate" {
-  value     = "${google_container_cluster.mongodb.master_auth.0.client_certificate}"
+  value     = "${google_container_cluster.k8s_dev_cluster.master_auth.0.client_certificate}"
   sensitive = true
 }
 
 output "client_key" {
-  value     = "${google_container_cluster.mongodb.master_auth.0.client_key}"
+  value     = "${google_container_cluster.k8s_dev_cluster.master_auth.0.client_key}"
   sensitive = true
 }
 
 output "cluster_ca_certificate" {
-  value     = "${google_container_cluster.mongodb.master_auth.0.cluster_ca_certificate}"
+  value     = "${google_container_cluster.k8s_dev_cluster.master_auth.0.cluster_ca_certificate}"
   sensitive = true
 }
 
 output "host" {
-  value     = "${google_container_cluster.mongodb.endpoint}"
+  value     = "${google_container_cluster.k8s_dev_cluster.endpoint}"
   sensitive = true
 }

@@ -4,6 +4,7 @@
 resource "kubernetes_deployment" "mongo-master" {
   metadata {
     name = "mongo-master"
+    namespace = "dbspace"
 
     labels {
       app  = "mongo"

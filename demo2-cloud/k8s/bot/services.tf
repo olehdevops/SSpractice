@@ -30,6 +30,6 @@ resource "kubernetes_service" "telebot" {
     port {
       port        = 80
     }
-    type = "LoadBalancer"
+    type = "ClusterIP"
   }
 }

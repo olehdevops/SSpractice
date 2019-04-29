@@ -15,10 +15,11 @@ variable "API" {
 
 variable "service" {
   description = "service IP address"
-
+  default = "0.0.0.0"
 }
 variable "ip_redis" {
   description = "redis IP"
+  default = "0.0.0.0"
 }
 
 variable "region" {

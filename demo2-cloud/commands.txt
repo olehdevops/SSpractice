@@ -2,7 +2,7 @@
 ### get needed variables befor running terraform ###
 ####################################################
 
-export GOOGLE_APPLICATION_CREDENTIALS='/home/zambezi/devops/mygit/SSpractice/demo2-cloud/key.json' &&
+export GOOGLE_APPLICATION_CREDENTIALS='~/key.json' &&
 export TF_VAR_project=$(gcloud config get-value project) &&
 export TF_VAR_API='abcabcabc' &&
 export TF_VAR_password='xxxxxxxxxxxxxx16' && 
@@ -18,15 +18,4 @@ where "password1" < your password for DB
 where "password2" < your password for DB root account
 where 'bucket_name < your bucket name (must be unique)
 
-#########################
-### access in cluster ###
-#########################
-
-gcloud container clusters get-credentials mongodb --zone europe-west1-b --project $TF_VAR_project
-
-
-kubectl log -n default jupyter-notebook-586f6477c-hswzs | grep token
-log is DEPRECATED and will be removed in a future version. Use logs instead.
-[I 15:57:02.870 NotebookApp] http://(jupyter-notebook-586f6477c-hswzs or 127.0.0.1):8888/?token=d6755953ebe4c530d4d9704f9aa10388a7d4a592ae9902a0
-        http://(jupyter-notebook-586f6477c-hswzs or 127.0.0.1):8888/?token=d6755953ebe4c530d4d9704f9aa10388a7d4a592ae9902a0
 

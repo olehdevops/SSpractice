@@ -13,6 +13,7 @@ provider "kubernetes" {
 resource "kubernetes_service" "redis-master" {
   metadata {
     name = "redis-master"
+    namespace = "dbspace"
 
     labels {
       app  = "redis"
@@ -28,7 +29,7 @@ resource "kubernetes_service" "redis-master" {
       tier = "backend"
     }
 
-    type = "LoadBalancer"
+    type = "ClusterIP"
 
     port {
       port        = 6379
@@ -37,6 +38,6 @@ resource "kubernetes_service" "redis-master" {
   }
 }
 
-output "ip_redis" {
-  value = "${kubernetes_service.redis-master.load_balancer_ingress.0.ip}"
-}
+# output "ip_redis" {
+#   value = "${kubernetes_service.redis-master.load_balancer_ingress.0.ip}"
+# }

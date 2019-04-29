@@ -1,0 +1,93 @@
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: traefik-ingress-controller
+#   namespace: kube-system
+---
+kind: DaemonSet
+apiVersion: extensions/v1beta1
+metadata:
+  name: traefik-ingress-controller
+  namespace: traefik
+  labels:
+    k8s-app: traefik-ingress-lb
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress-lb
+        name: traefik-ingress-lb
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+      volumes:
+        # - name: traefik-ui-tls-cert
+        #   secret:
+        #     secretName: traefik-ui-tls-cert
+        - name: traefik-ingress-configmap
+          configMap:
+            name: traefik-ingress-configmap
+      containers:
+      - image: traefik:2.0 # The official v2.0 Traefik docker image
+        name: traefik-ingress-lb
+        ports:
+        - name: http
+          containerPort: 80
+          hostPort: 80
+        - name: admin
+          containerPort: 8080
+        - name: mongo
+          containerPort: 27017
+        - name: redis
+          containerPort: 6379
+        volumeMounts:
+          # - mountPath: "/ssl"
+          #   name: "traefik-ui-tls-cert"
+          - mountPath: "/config"
+            name: "traefik-ingress-configmap"
+        # securityContext:
+        #   capabilities:
+        #     drop:
+        #     - ALL
+        #     add:
+        #     - NET_BIND_SERVICE
+        args:
+        - --api
+        - --configfile=/config/traefik.toml
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-ingress-service
+  namespace: traefik
+spec:
+  selector:
+    k8s-app: traefik-ingress-lb
+  ports:
+    - protocol: TCP
+      port: 80
+      name: web
+    - protocol: TCP
+      port: 8080
+      name: admin
+    - port: 27017
+      protocol: TCP
+      name: mongo
+    - port: 6379
+      protocol: TCP
+      name: redis
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-web-ui
+  namespace: traefik
+spec:
+  selector:
+    k8s-app: traefik-ingress-lb
+  ports:
+  - name: dashboard-port
+    port: 80
+    targetPort: 8080

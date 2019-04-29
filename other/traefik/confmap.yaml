@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-ingress-configmap
+  namespace: traefik
+data:
+  traefik.toml: |
+    [Global]
+      debug = true
+
+    [entrypoints]
+      [entrypoints.web]
+          address = ":80"
+      [entrypoints.mongo-port]
+          address = ":27017"
+      [entrypoints.redis-port]
+          address = ":6379"
+
+    [providers]
+      [providers.file]
+
+    #[tcp] # YAY!
+    #   [tcp.routers]
+    #       [tcp.routers.everything-to-mongo]
+    #         entrypoints = ["mongo-port"]
+    #         rule = "HostSNI(`*`)" # Catches every request       
+    #         service = "database"
+    # [tcp.services]
+    #   [tcp.services.database.LoadBalancer]
+    #     [[tcp.services.database.LoadBalancer.servers]]
+    #         address = "mongodb-service.default.svc:27017"
+    [tcp] # YAY!
+      [tcp.routers]
+          [tcp.routers.everything-to-mongo]
+            entrypoints = ["mongo-port"]
+            rule = "HostSNI(`*`)" # Catches every request       
+            service = "database"
+          [tcp.routers.everything-to-redis]
+            entrypoints = ["redis-port"]
+            rule = "HostSNI(`*`)"
+            service = "fastdb"
+
+    [tcp.services]
+      [tcp.services.database.LoadBalancer]
+        [[tcp.services.database.LoadBalancer.servers]]
+            address = "mongo-master.dbspace.svc:27017"
+      [tcp.services.fastdb.LoadBalancer]
+        [[tcp.services.fastdb.LoadBalancer.servers]]
+            address = "redis-master.dbspace.svc:6379"
