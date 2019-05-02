@@ -1,5 +1,0 @@
-kubectl create namespace traefik && kubectl create namespace dbspace
-
-kubectl --namespace traefik create sa traefik-controller-admin
-
-kubectl create clusterrolebinding traefik-controller --clusterrole cluster-admin --serviceaccount=traefik:traefik-controller-admin

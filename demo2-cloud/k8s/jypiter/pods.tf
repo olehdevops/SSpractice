@@ -60,6 +60,12 @@ resource "kubernetes_deployment" "jupyter-notebook" {
         container {
           image = "jupyter/all-spark-notebook"
           name  = "minimal-notebook"
+          command = [ "start-notebook.sh" ]
+            args = [
+              "--NotebookApp.base_url='/jupyterx'", 
+              "--NotebookApp.token='secretjupyterxtoken'"
+            ]
+        
 
           volume_mount {
             mount_path = "/home/jovyan/work"
