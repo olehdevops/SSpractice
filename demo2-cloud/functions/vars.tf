@@ -13,13 +13,13 @@ variable "API" {
 //  export TF_VAR_API=your API key
 }
 
-variable "service" {
+variable "ip_mongo" {
   description = "service IP address"
-  default = "0.0.0.0"
+  #default = "0.0.0.0"
 }
 variable "ip_redis" {
   description = "redis IP"
-  default = "0.0.0.0"
+  #default = "0.0.0.0"
 }
 
 variable "region" {
@@ -37,5 +37,5 @@ variable "MONGODB_USERNAME" {
 
 variable "MONGODB_PASSWORD" {}
 variable "MONGODB_ROOT_PASSWORD" {}
-#variable "ip_tf" {}
+variable "ip_tf" {}
 

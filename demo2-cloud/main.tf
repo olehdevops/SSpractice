@@ -8,6 +8,7 @@ module "gke" {
   username = "${var.username}"
   password = "${var.password}"
 }
+
 /*
 module "k8s" {
   source                 = "./k8s"
@@ -22,6 +23,16 @@ module "k8s" {
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
 }*/
+module "traefik" {
+  source                 = "./k8s/traefik"
+  host                   = "${module.gke.host}"
+  username               = "${var.username}"
+  password               = "${var.password}"
+  client_certificate     = "${module.gke.client_certificate}"
+  client_key             = "${module.gke.client_key}"
+  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+  lb_ext_ip              = "${module.gke.external_ip}"
+}
 
 module "mongo" {
   source                 = "./k8s/mongo"
@@ -65,7 +76,8 @@ module "jypiter" {
   client_certificate     = "${module.gke.client_certificate}"
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
-  lbmainip = "${module.gke.mainip}"
+
+  #lbmainip = "${module.gke.mainip}"
 }
 
 module "bot" {
@@ -77,17 +89,18 @@ module "bot" {
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
   api_telegram           = "${var.api_telegram}"
-  #ip_redis              = "${module.redis.ip_redis}"
+  ip_redis               = "${module.gke.external_ip}"
 }
+
 module "functions" {
   project               = "${var.project}"
   source                = "./functions"
   region                = "${var.region}"
   bucket                = "${var.bucket}"
   API                   = "${var.API}"
-  #service               = "${module.mongo.ip}"
-  #ip_redis              = "${module.redis.ip_redis}"
-  #ip_tf = "${module.tf.ip_tf}"
+  ip_mongo              = "${module.gke.external_ip}"
+  ip_redis              = "${module.gke.external_ip}"
+  ip_tf                 = "${module.gke.external_ip}"
   MONGODB_PASSWORD      = "${var.MONGODB_PASSWORD}"
   MONGODB_ROOT_PASSWORD = "${var.MONGODB_ROOT_PASSWORD}"
 }

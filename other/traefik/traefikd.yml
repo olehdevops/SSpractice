@@ -19,7 +19,7 @@ spec:
         k8s-app: traefik-ingress-lb
         name: traefik-ingress-lb
     spec:
-      serviceAccountName: traefik-ingress-controller
+      serviceAccountName: traefik-controller-admin
       terminationGracePeriodSeconds: 60
       volumes:
         # - name: traefik-ui-tls-cert

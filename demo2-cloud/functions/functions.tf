@@ -96,7 +96,7 @@ resource "google_cloudfunctions_function" "save-to-db" {
     environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
   }
 
 }
@@ -139,7 +139,7 @@ resource "google_cloudfunctions_function" "zamb" {
     environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
     ip_redis = "${var.ip_redis}"
   }
 
@@ -196,6 +196,6 @@ resource "google_cloudfunctions_function" "get-from-db" {
   environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
   }
 }

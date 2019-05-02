@@ -4,7 +4,7 @@
 resource "kubernetes_deployment" "redis-master" {
   metadata {
     name = "redis-master"
-    namespace = "dbspace"
+    namespace = "${kubernetes_namespace.redis_space.metadata.0.name}"
 
     labels {
       app  = "redis"

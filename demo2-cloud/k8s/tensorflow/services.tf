@@ -28,15 +28,11 @@ resource "kubernetes_service" "tf" {
       tier = "backend"
     }
 
-    type = "LoadBalancer"
+    type = "ClusterIP"
 
     port {
       port        = 80
       target_port = 80
     }
   }
-}
-
-output "ip_tf" {
-  value = "${kubernetes_service.tf.load_balancer_ingress.0.ip}"
 }

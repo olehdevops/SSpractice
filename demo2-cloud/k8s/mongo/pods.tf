@@ -1,10 +1,10 @@
 #######################
 ### K8S POD - Mongo ###
 #######################
-resource "kubernetes_deployment" "mongo-master" {
+resource "kubernetes_deployment" "mongo_master" {
   metadata {
     name = "mongo-master"
-    namespace = "dbspace"
+    namespace = "${kubernetes_namespace.mongo_space.metadata.0.name}"
 
     labels {
       app  = "mongo"

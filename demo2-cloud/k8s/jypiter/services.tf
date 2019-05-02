@@ -10,9 +10,9 @@ provider "kubernetes" {
   cluster_ca_certificate = "${base64decode(var.cluster_ca_certificate)}"
   load_config_file = false
 }
-resource "kubernetes_service" "jupyter-balancer" {
+resource "kubernetes_service" "jupyter-service" {
   metadata {
-    name = "jupyter-balancer"
+    name = "jupyter-service"
 
     labels {
       app  = "jupyter-notebook"
@@ -28,8 +28,8 @@ resource "kubernetes_service" "jupyter-balancer" {
       tier = "backend"
     }
 
-    type = "LoadBalancer"
-    load_balancer_ip = "${var.lbmainip}"
+    type = "ClusterIP"
+    #load_balancer_ip = "${var.lbmainip}"
 
     port {
       port        = 80

@@ -11,10 +11,10 @@ provider "kubernetes" {
   load_config_file       = false
 }
 
-resource "kubernetes_service" "mongo-master" {
+resource "kubernetes_service" "mongo_master" {
   metadata {
     name = "mongo-master"
-    namespace = "dbspace"
+    namespace = "${kubernetes_namespace.mongo_space.metadata.0.name}"
     labels {
       app  = "mongo"
       role = "master"
