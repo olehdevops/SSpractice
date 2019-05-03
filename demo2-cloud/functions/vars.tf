@@ -21,6 +21,10 @@ variable "ip_redis" {
   description = "redis IP"
   #default = "0.0.0.0"
 }
+variable "REDIS_PASSWORD" {
+  
+}
+
 
 variable "region" {
   default = "europe-west1"

@@ -35,13 +35,16 @@ resource "kubernetes_deployment" "redis-master" {
 
       spec {
         container {
-          image = "k8s.gcr.io/redis:e2e"
+          image = "bitnami/redis:latest"
           name  = "master"
 
           port {
             container_port = 6379
           }
-
+          env {
+            name  = "REDIS_PASSWORD"
+            value = "${var.REDIS_PASSWORD}"
+          }
           resources {
             requests {
               cpu    = "100m"

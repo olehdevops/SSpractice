@@ -12,5 +12,7 @@ variable cluster_ca_certificate {}
 variable "api_telegram" {}
 variable "ip_redis" {
 }
+variable "r_pass" {
+}
 
 

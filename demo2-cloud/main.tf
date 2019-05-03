@@ -41,6 +41,7 @@ module "redis" {
   client_certificate     = "${module.gke.client_certificate}"
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+  REDIS_PASSWORD         = "${var.REDIS_PASSWORD}"
 }
 
 module "tf" {
@@ -73,6 +74,7 @@ module "bot" {
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
   api_telegram           = "${var.api_telegram}"
   ip_redis               = "${module.gke.external_ip}"
+  r_pass = "${var.REDIS_PASSWORD}"
 }
 
 module "functions" {
@@ -86,4 +88,5 @@ module "functions" {
   ip_tf                 = "${module.gke.external_ip}"
   MONGODB_PASSWORD      = "${var.MONGODB_PASSWORD}"
   MONGODB_ROOT_PASSWORD = "${var.MONGODB_ROOT_PASSWORD}"
+  REDIS_PASSWORD = "${var.REDIS_PASSWORD}"
 }

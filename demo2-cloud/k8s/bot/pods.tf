@@ -34,7 +34,7 @@ resource "kubernetes_deployment" "telebot" {
 
       spec {
         container {
-          image = "denizka/telebot:v0.11"
+          image = "denizka/telebot:v1.2"
           name  = "master"
 
           env {
@@ -45,6 +45,10 @@ resource "kubernetes_deployment" "telebot" {
           env {
             name  = "ip_redis"
             value = "${var.ip_redis}"
+          }
+          env {
+            name  = "r_pass"
+            value = "${var.r_pass}"
           }
 
           resources {

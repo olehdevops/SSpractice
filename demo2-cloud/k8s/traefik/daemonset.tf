@@ -60,7 +60,7 @@ resource "kubernetes_daemonset" "traefik_controller" {
 
           port {
             name           = "redis"
-            host_port = 6379
+            #host_port = 13666
             container_port = 6379
           }
           port {

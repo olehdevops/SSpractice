@@ -7,7 +7,7 @@
       [entrypoints.mongo-port]
           address = ":27017"
       [entrypoints.redis-port]
-          address = ":6379"
+          address = ":13666"
       [entrypoints.tf-port]
           address = ":9000"
       
@@ -37,7 +37,7 @@
             address = "mongo-master.mspace.svc:27017"
         [tcp.services.fastdb.LoadBalancer]
           [[tcp.services.fastdb.LoadBalancer.servers]]
-            address = "redis-master.rspace.svc:6379"
+            address = "redis-master.rspace.svc:13666"
         [tcp.services.tf.LoadBalancer]
           [[tcp.services.tf.LoadBalancer.servers]]
             address = "tf.default.svc:9000"

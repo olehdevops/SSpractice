@@ -32,7 +32,7 @@ resource "kubernetes_service" "redis-master" {
     type = "ClusterIP"
 
     port {
-      port        = 6379
+      port        = 13666
       target_port = 6379
     }
   }

@@ -120,6 +120,7 @@ resource "google_cloudfunctions_function" "current-temp" {
     environment_variables = {
     project = "${var.project}"
     ip_redis = "${var.ip_redis}"
+    r_pass = "${var.REDIS_PASSWORD}"
   }
 
 }
@@ -141,6 +142,7 @@ resource "google_cloudfunctions_function" "zamb" {
     user_pass = "${var.MONGODB_PASSWORD}"
     ip = "${var.ip_mongo}"
     ip_redis = "${var.ip_redis}"
+    r_pass = "${var.REDIS_PASSWORD}"
   }
 
 }
