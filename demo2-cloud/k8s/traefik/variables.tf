@@ -13,3 +13,10 @@ variable "lb_ext_ip" {
   description = "reserver external IP"
 }
 
+# terraform {
+#   backend "gcs" {
+#     bucket = "name-unic"
+#     prefix = "folder"
+#     credentials = "/path.json"
+#   }
+# }

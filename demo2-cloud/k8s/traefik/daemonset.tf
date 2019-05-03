@@ -63,6 +63,11 @@ resource "kubernetes_daemonset" "traefik_controller" {
             host_port = 6379
             container_port = 6379
           }
+          port {
+            name           = "tf"
+            host_port = 9000
+            container_port = 80
+          }
 
           volume_mount {
             mount_path = "/config"

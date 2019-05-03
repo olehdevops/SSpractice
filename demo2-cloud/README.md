@@ -10,7 +10,9 @@ Export all needed variables
 
 ### third ###
 Run terraform
-
+$ terraform init
+$ terraform plan
+$ terraform apply
 
 ### UI Part ###
 Hi, there! This is manual for UI and function which fetch data for it.

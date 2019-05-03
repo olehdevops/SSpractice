@@ -49,6 +49,11 @@ resource "kubernetes_service" "traefik_service" {
       port     = 6379
       name     = "redis"
     }
+    port {
+      protocol = "TCP"
+      port     = 9000
+      name     = "tf"
+    }
   }
 }
 

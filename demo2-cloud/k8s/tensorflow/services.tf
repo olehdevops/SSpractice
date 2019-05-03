@@ -31,7 +31,7 @@ resource "kubernetes_service" "tf" {
     type = "ClusterIP"
 
     port {
-      port        = 80
+      port        = 9000
       target_port = 80
     }
   }

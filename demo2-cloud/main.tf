@@ -8,21 +8,6 @@ module "gke" {
   username = "${var.username}"
   password = "${var.password}"
 }
-
-/*
-module "k8s" {
-  source                 = "./k8s"
-  host                   = "${module.gke.host}"
-  username               = "${var.username}"
-  password               = "${var.password}"
-  MONGODB_DATABASE       = "${var.MONGODB_DATABASE}"
-  MONGODB_USERNAME       = "${var.MONGODB_USERNAME}"
-  MONGODB_PASSWORD       = "${var.MONGODB_PASSWORD}"
-  MONGODB_ROOT_PASSWORD  = "${var.MONGODB_ROOT_PASSWORD}"
-  client_certificate     = "${module.gke.client_certificate}"
-  client_key             = "${module.gke.client_key}"
-  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
-}*/
 module "traefik" {
   source                 = "./k8s/traefik"
   host                   = "${module.gke.host}"
@@ -76,8 +61,6 @@ module "jypiter" {
   client_certificate     = "${module.gke.client_certificate}"
   client_key             = "${module.gke.client_key}"
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
-
-  #lbmainip = "${module.gke.mainip}"
 }
 
 module "bot" {
