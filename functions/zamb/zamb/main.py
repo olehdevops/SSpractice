@@ -140,13 +140,13 @@ def zamb(request):
         print(forecast)
         toredis = json.dumps({'forecast': forecast, 'dt': mongo_dt}).encode('UTF-8')
         ip_redis = os.environ.get('ip_redis')
-	redis_pass = os.environ.get('r_pass')
+	    redis_pass = os.environ.get('r_pass')
         r = redis.StrictRedis(host=ip_redis, port=13666, db=1, password=redis_pass)
         r.set(city, toredis)
 
     except:
         ip_redis = os.environ.get('ip_redis')
-	redis_pass = os.environ.get('r_pass')
+	    redis_pass = os.environ.get('r_pass')
         toredis = json.dumps({'forecast': "There is a lack of information to make a forecast", 'dt': mongo_dt}).encode('UTF-8')
         r = redis.StrictRedis(host=ip_redis, port=13666, db=1, password=redis_pass)
         r.set(city, toredis)
