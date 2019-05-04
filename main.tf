@@ -93,14 +93,13 @@ module "functions" {
   region                = "${var.region}"
   bucket                = "${var.bucket}"
   API                   = "${var.API}"
-  //ip_mongo              = "${module.gke.external_ip}"
+  ip_mongo              = "${module.gke.external_ip}"
   ip_redis              = "${module.gke.external_ip}"
-  //ip_tf                 = "${module.gke.external_ip}"
+  ip_tf                 = "${module.gke.external_ip}"
   MONGODB_PASSWORD      = "${var.MONGODB_PASSWORD}"
   MONGODB_ROOT_PASSWORD = "${var.MONGODB_ROOT_PASSWORD}"
   REDIS_PASSWORD = "${var.REDIS_PASSWORD}"
-  ip_tf1 = "${module.gke.external_ip}"
-  service = "${module.gke.external_ip}"
+  r_pass = "${var.REDIS_PASSWORD}"
 }
 
 

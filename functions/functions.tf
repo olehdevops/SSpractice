@@ -156,7 +156,7 @@ resource "google_cloudfunctions_function" "saveToDB" {
     environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
   }
 
 }
@@ -200,7 +200,7 @@ resource "google_cloudfunctions_function" "zamb" {
     environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
     ip_redis = "${var.ip_redis}"
     r_pass = "${var.REDIS_PASSWORD}"
   }
@@ -258,7 +258,7 @@ resource "google_cloudfunctions_function" "getFromDB" {
   environment_variables = {
     user_name = "${var.MONGODB_USERNAME}"
     user_pass = "${var.MONGODB_PASSWORD}"
-    ip = "${var.service}"
+    ip = "${var.ip_mongo}"
   }
 }
 
@@ -288,7 +288,7 @@ resource "google_cloudfunctions_function" "getPredictions" {
   source_archive_object = "${google_storage_bucket_object.getPredictions.name}"
   environment_variables = {
 
-    ip_tf = "${var.ip_tf1}"
+    ip_tf = "${var.ip_tf}"
     link_api_to_tf = "${google_cloudfunctions_function.apiToTF.https_trigger_url}"
   }
 }

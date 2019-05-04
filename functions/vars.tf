@@ -13,15 +13,18 @@ variable "API" {
 //  export TF_VAR_API=your API key
 }
 
-variable "ip_tf1" {
+variable "ip_tf" {
   description = "ip_TF"
 //  export TF_VAR_ip_tf=.....
 }
 variable "REDIS_PASSWORD" {
   
 }
+variable "r_pass" {
 
-variable "service" {
+}
+
+variable "ip_mongo" {
   description = "service IP address"
 
 }
