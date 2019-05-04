@@ -1,5 +1,4 @@
 def label = "jenpod"
-def defaultContainer = "jnlp"
 
 
 properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
@@ -19,18 +18,15 @@ podTemplate(label: label, containers: [
                                  string(credentialsId: 'TF_VAR_api_telegram', variable: 'TF_VAR_api_telegram'),
                                  string(credentialsId: 'TF_VAR_MONGODB_PASSWORD', variable: 'TF_VAR_MONGODB_PASSWORD'),
                                  string(credentialsId: 'TF_VAR_API', variable: 'TF_VAR_API'),
-				                 string(credentialsId: 'TF_VAR_REDIS_PASSWORD', variable: 'TF_VAR_REDIS_PASSWORD'),
                                  string(credentialsId: 'TF_VAR_bucket', variable: 'TF_VAR_bucket'),
-				                 string(credentialsId: 'TF_VAR_r_pass', variable: 'TF_VAR_r_pass'),
-				                 string(credentialsId: 'TF_VAR_jtoken', variable: 'TF_VAR_jtoken'),
                                  string(credentialsId: 'TF_VAR_project', variable: 'TF_VAR_project'),
                                  string(credentialsId: 'TF_VAR_MONGODB_ROOT_PASSWORD', variable: 'TF_VAR_MONGODB_ROOT_PASSWORD')
                              ]) {
 
 
                     stage('Checkout repo'){
-                        checkout([$class: 'GitSCM', branches: [[name: '*/jenb']],
-                            userRemoteConfigs: [[url: 'https://github.com/RPalaziuk/SSpractice.git']]])
+                        checkout([$class: 'GitSCM', branches: [[name: '*/test1']],
+                            userRemoteConfigs: [[url: 'https://github.com/Yuriy6735/Demo3.git']]])
                         }
 
 
@@ -40,7 +36,7 @@ podTemplate(label: label, containers: [
                         //set SECRET with the credential content
                             sh 'ls -al $GOOGLE_CREDENTIALS'
                             sh 'mkdir -p creds'
-                            sh "cp \$GOOGLE_CREDENTIALS ./creds/key.json"
+                            sh "cp \$GOOGLE_CREDENTIALS ./creds/d3tf-238518-b1dc0018dc93.json"
                             sh 'terraform init'
                             sh 'terraform plan -out myplan'
                             //sh 'terraform apply -auto-approve -input=false myplan'

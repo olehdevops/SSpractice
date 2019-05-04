@@ -1,10 +1,10 @@
 def label = "jenpod"
+def defaultContainer = "jnlp"
 
 
 properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
 
 podTemplate(label: label, containers: [
-  containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'python3', image: 'python:3', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'terraform', image: 'hashicorp/terraform', command: 'cat', ttyEnabled: true)
   //containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm', command: 'cat', ttyEnabled: true)
@@ -19,10 +19,10 @@ podTemplate(label: label, containers: [
                                  string(credentialsId: 'TF_VAR_api_telegram', variable: 'TF_VAR_api_telegram'),
                                  string(credentialsId: 'TF_VAR_MONGODB_PASSWORD', variable: 'TF_VAR_MONGODB_PASSWORD'),
                                  string(credentialsId: 'TF_VAR_API', variable: 'TF_VAR_API'),
-				 string(credentialsId: 'TF_VAR_REDIS_PASSWORD', variable: 'TF_VAR_REDIS_PASSWORD'),
+				                 string(credentialsId: 'TF_VAR_REDIS_PASSWORD', variable: 'TF_VAR_REDIS_PASSWORD'),
                                  string(credentialsId: 'TF_VAR_bucket', variable: 'TF_VAR_bucket'),
-				 string(credentialsId: 'TF_VAR_r_pass', variable: 'TF_VAR_r_pass'),
-				 string(credentialsId: 'TF_VAR_jtoken', variable: 'TF_VAR_jtoken'),
+				                 string(credentialsId: 'TF_VAR_r_pass', variable: 'TF_VAR_r_pass'),
+				                 string(credentialsId: 'TF_VAR_jtoken', variable: 'TF_VAR_jtoken'),
                                  string(credentialsId: 'TF_VAR_project', variable: 'TF_VAR_project'),
                                  string(credentialsId: 'TF_VAR_MONGODB_ROOT_PASSWORD', variable: 'TF_VAR_MONGODB_ROOT_PASSWORD')
                              ]) {
