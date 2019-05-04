@@ -4,6 +4,7 @@ metadata:
   name: jenkins-ext
 spec:
   type: LoadBalancer
+  load_balancer_ip = 35.246.208.3
   selector:
     app: jenkins
   ports:

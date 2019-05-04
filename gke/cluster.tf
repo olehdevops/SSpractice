@@ -4,7 +4,7 @@
 resource "google_container_cluster" "k8s_dev_cluster" {
   name               = "k8s-dev-cluster"
   region               = "${var.region}"
-  initial_node_count = 1
+  initial_node_count = 2
 
   addons_config {
     network_policy_config {

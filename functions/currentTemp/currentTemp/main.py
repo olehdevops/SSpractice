@@ -8,8 +8,9 @@ def message_from_topic3(request, message):
     project_id = os.environ.get('project')
     subscription_name = "topic3"
     ip_redis = os.environ.get('ip_redis')
+    redis_pass = os.environ.get('r_pass')
     subscriber = pubsub_v1.SubscriberClient()
-    r = redis.StrictRedis(host=ip_redis, port=6379, db=0)
+    r = redis.StrictRedis(host=ip_redis, port=13666, db=0, password=redis_pass)
 
     subscription_path = subscriber.subscription_path(
     project_id, subscription_name)

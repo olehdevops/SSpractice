@@ -1,6 +1,15 @@
 ###############
 ### Modules ###
 ###############
+terraform {
+  backend "gcs" {
+    bucket = "tfdemo3statez"
+    prefix = "demo"
+    credentials = "./creds/key.json"
+  }
+}
+
+
 module "gke" {
   source   = "./gke"
   project  = "${var.project}"
@@ -91,3 +100,5 @@ module "functions" {
   MONGODB_ROOT_PASSWORD = "${var.MONGODB_ROOT_PASSWORD}"
   REDIS_PASSWORD = "${var.REDIS_PASSWORD}"
 }
+
+
