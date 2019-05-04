@@ -4,6 +4,7 @@ def label = "jenpod"
 properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
 
 podTemplate(label: label, containers: [
+  containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'python3', image: 'python:3', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'terraform', image: 'hashicorp/terraform', command: 'cat', ttyEnabled: true)
   //containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm', command: 'cat', ttyEnabled: true)
@@ -39,7 +40,7 @@ podTemplate(label: label, containers: [
                         //set SECRET with the credential content
                             sh 'ls -al $GOOGLE_CREDENTIALS'
                             sh 'mkdir -p creds'
-                            sh "cp \$GOOGLE_CREDENTIALS ./creds/d3tf-238518-b1dc0018dc93.json"
+                            sh "cp \$GOOGLE_CREDENTIALS ./creds/key.json"
                             sh 'terraform init'
                             sh 'terraform plan -out myplan'
                             //sh 'terraform apply -auto-approve -input=false myplan'
