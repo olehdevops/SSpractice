@@ -1,5 +1,5 @@
 def label = "jenpod"
-defaultContainer = "jnlp"
+def defaultContainer = "jnlp"
 
 
 properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
