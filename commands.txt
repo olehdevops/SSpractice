@@ -1,0 +1,23 @@
+####################################################
+### get needed variables befor running terraform ###
+####################################################
+
+export GOOGLE_CREDENTIALS='~/key.json' &&
+export TF_VAR_project=$(gcloud config get-value project) &&
+export TF_VAR_API='abcabcabc' &&
+export TF_VAR_password='xxxxxxxxxxxxxx16' && 
+export TF_VAR_MONGODB_PASSWORD='password1'  &&
+export TF_VAR_MONGODB_ROOT_PASSWORD='password2' &&
+export TF_VAR_REDIS_PASSWORD='password3'
+export TF_VAR_bucket='bucket_name'
+export TF_VAR_api_telegram='api_key_for_telegrambot'
+
+where "~/key.json" < path to your GC SA Key
+where abcabcabc < your API-key for openweather API
+where xxxxxxxxxxxxxx16 < password for k8s cluster
+where "password1" < your password for DB
+where "password2" < your password for DB root account
+where "password3" < your password for DB redis
+where 'bucket_name < your bucket name (must be unique)
+
+
