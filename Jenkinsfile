@@ -74,17 +74,17 @@ spec:
       }
     }
 
-    if (${params.apply} == 'terraform destroy') {
-      stage('Destroy Terraform') {
-        steps {
-          container('terraform'){
-            sh 'terraform destroy -auto-approve -input=false'
-          }
-        }
-      }
-    }
+    //if (${params.apply} == 'terraform destroy') {
+    //  stage('Destroy Terraform') {
+    //    steps {
+    //      container('terraform'){
+    //        sh 'terraform destroy -auto-approve -input=false'
+    //      }
+    //    }
+    //  }
+    //}
 
-    else {
+    //else {
     stage("Run unit tests"){
       steps {
         container("python3"){
@@ -100,7 +100,7 @@ spec:
           }
         }
       }
-    }
+    //}
 
     stage('Apply Terraform') {
       steps {
