@@ -30,6 +30,10 @@ spec:
     }
   }
 
+  parameters {
+        choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')
+  }
+
   environment {
     GOOGLE_CREDENTIALS = credentials('terraform')
     TF_VAR_password = credentials('TF_VAR_password')
@@ -103,5 +107,5 @@ spec:
       }
     }
   }
-  
+
 }
