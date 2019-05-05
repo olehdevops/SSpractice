@@ -45,7 +45,7 @@ spec:
   }
 
   parameters {
-    choice(name: 'CHOICE', choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')
+    choice(name: 'apply', choices: ['terraform apply', 'terraform destroy'], description: 'apply')
 
   }
 
