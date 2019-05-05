@@ -103,7 +103,5 @@ spec:
       }
     }
   }
-  catch(err){
-            currentBuild.result = 'Failure'
-  }
+  
 }
