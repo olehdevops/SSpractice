@@ -30,7 +30,6 @@ spec:
     }
   }
 
-
   environment {
     GOOGLE_CREDENTIALS = credentials('terraform')
     TF_VAR_password = credentials('TF_VAR_password')
@@ -45,9 +44,13 @@ spec:
     TF_VAR_MONGODB_ROOT_PASSWORD = credentials('TF_VAR_MONGODB_ROOT_PASSWORD')
   }
 
-  stages {
+  parameters {
+    choice(name: 'CHOICE', choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')
 
-    properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
+  }
+
+
+  stages {
 
 
     stage('Clone repo') {
@@ -71,7 +74,7 @@ spec:
       }
     }
 
-    if (params.apply == 'terraform destroy') {
+    if (${params.apply} == 'terraform destroy') {
       stage('Destroy Terraform') {
         steps {
           container('terraform'){
