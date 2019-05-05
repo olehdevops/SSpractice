@@ -30,7 +30,6 @@ spec:
     }
   }
 
-  properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
 
   environment {
     GOOGLE_CREDENTIALS = credentials('terraform')
@@ -47,6 +46,9 @@ spec:
   }
 
   stages {
+
+    properties([parameters([choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')])])
+
 
     stage('Clone repo') {
       steps {
