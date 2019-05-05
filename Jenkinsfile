@@ -36,10 +36,10 @@ spec:
     TF_VAR_api_telegram = credentials('TF_VAR_api_telegram'),
     TF_VAR_MONGODB_PASSWORD = credentials('TF_VAR_MONGODB_PASSWORD'),
     TF_VAR_API = credentials('TF_VAR_API'),
-	TF_VAR_REDIS_PASSWORD = credentials('TF_VAR_REDIS_PASSWORD'),
+    TF_VAR_REDIS_PASSWORD = credentials('TF_VAR_REDIS_PASSWORD'),
     TF_VAR_bucket = credentials('TF_VAR_bucket'),
-	TF_VAR_r_pass = credentials('TF_VAR_r_pass'),
-	TF_VAR_jtoken = credentials('TF_VAR_jtoken'),
+    TF_VAR_r_pass = credentials('TF_VAR_r_pass'),
+    TF_VAR_jtoken = credentials('TF_VAR_jtoken'),
     TF_VAR_project = credentials('TF_VAR_project'),
     TF_VAR_MONGODB_ROOT_PASSWORD = credentials('TF_VAR_MONGODB_ROOT_PASSWORD')
   }
