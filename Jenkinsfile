@@ -30,8 +30,8 @@ spec:
     }
   }
 
-  parameters {
-        choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')
+  properties {
+        parameters: [choice(choices: ['terraform apply', 'terraform destroy'], description: 'apply', name: 'apply')]
   }
 
   environment {
